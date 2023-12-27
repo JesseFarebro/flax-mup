@@ -1,0 +1,44 @@
+[project]
+name = "flax-mup"
+version = "0.1.0"
+description = "Flax implementation of the µ-Parametrization."
+authors = [{ name = "Jesse Farebrother", email = "jfarebro@cs.mcgill.ca" }]
+dependencies = [
+    "optax>=0.1.7",
+    "flax @ git+https://github.com/google/flax",
+    "chex>=0.1.85",
+]
+requires-python = ">=3.10"
+readme = "README.md"
+license = { text = "MIT" }
+
+[project.optional-dependencies]
+test = ["seaborn>=0.13.0", "pandas>=2.1.4", "tqdm>=4.66.1"]
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+[tool.pdm]
+package-type = "library"
+
+[tool.ruff]
+indent-width = 4
+line-length = 100
+# Don't fix unused imports
+unfixable = ["F401"]
+# Ignore unused variables
+ignore = ["F841"]
+
+[tool.ruff.format]
+preview = true
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
+
+[[tool.pdm.source]]
+name = "jax"
+url = "https://storage.googleapis.com/jax-releases/jax_cuda_releases.html"
+verify_ssl = true
+type = "find_links"
